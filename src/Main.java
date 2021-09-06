@@ -1,4 +1,5 @@
-
+import java.math.BigDecimal;
+import java.util.Hashtable;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,14 +10,17 @@ public class Main {
 
 //        test.add("mbnjifg", "7h86yg90");
 
-        Model m = new Model("67t8gh8", "b fgjk");
-        System.out.println(m.getKey().hashCode());
+//        Model m = new Model("67t8gh8", "b fgjk");
+//        Model m = new Model(22, "b fgjk");
 
-//        test.add("67t8gh8", "b fgjk"); // при add - ArrayIndexOutOfBoundsException
+//        System.out.println(m.getKey().hashCode());
 
-//        test.add("7bniurto", " nvuerhi");
+        test.add("67t8gh8", "b fgjk");
+        test.add(22, "nvuerhi");
+        test.add(77L, 654321);
+        test.add(BigDecimal.valueOf(564), "6grtsdy");
 
-//        System.out.println(test.showAll());
-
+        System.out.println(test.showAll());
+        System.out.println(test.findAllByKey(77L));
     }
 }

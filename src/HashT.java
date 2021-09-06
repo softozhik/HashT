@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class HashT {
+public class HashT<K, V> {
 
     private final int TABLE_SIZE = 16;
 
@@ -14,33 +14,34 @@ public class HashT {
     }
 
     // получаем объект из входных данных
-    private Model model(String key, String value) {
+    private Model model(K key, V value) {
         return new Model(key, value);
     }
 
     // получаем номер корзины по ключу
-    private int bucketNum(String key) {
-        return key.hashCode() % TABLE_SIZE;
+    private int bucketNum(K key) {
+        return Math.abs(key.hashCode() % TABLE_SIZE);
     }
 
     // добавление нового объекта в нужную корзину
-    public void add(String key, String value) {
+    public void add(K key, V value) {
         if (find(key, value)) return;
         table.get(bucketNum(key)).add(model(key, value));
     }
 
     // удаление объекта
-    public void delete(String key, String value) {
+    public void delete(K key, V value) {
         if (!find(key, value)) return;
         table.get(bucketNum(key)).remove(model(key, value));
     }
 
     // поиск объекта
-    public boolean find(String key, String value) {
+    public boolean find(K key, V value) {
         return table.get(bucketNum(key)).contains(model(key, value));
     }
 
-    public ArrayList<Model> findAllByKey(String key) {
+    // получение всей таблицы
+    public ArrayList<Model> findAllByKey(K key) {
         ArrayList<Model> equalKeys = new ArrayList<>();
         for (Model m : table.get(bucketNum(key))) {
             if (m.getKey().equals(key)) equalKeys.add(m);

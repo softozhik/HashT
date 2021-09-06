@@ -1,17 +1,17 @@
-public class Model {
-    private String key;
-    private String value;
+public class Model<K, V> {
+    private K key;
+    private V value;
 
-    public Model(String key, String value) {
+    public Model(K key, V value) {
         this.key = key;
         this.value = value;
     }
 
-    public String getKey() {
+    public K getKey() {
         return key;
     }
 
-    public String getValue() {
+    public V getValue() {
         return value;
     }
 
